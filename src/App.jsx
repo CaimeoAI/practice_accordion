@@ -1,9 +1,14 @@
+import Accordion from './components/accordion.jsx';
+import './App.css';
 
-const App = () => {
+export default function App(){
 
   return (
-    <div></div>
+    <div className='App'>
+      {/*Accordion Component*/}
+      <Accordion/>
+    </div>
   )
 }
 
-export default App
+
