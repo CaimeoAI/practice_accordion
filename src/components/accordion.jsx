@@ -1,5 +1,6 @@
 import { useState } from "react";
 import data from "../constants/data.js";
+import "../css/accordion.css";
 
 //? Single Selection
 //? Multiple Selection
@@ -22,8 +23,8 @@ export default function Accordion() {
                     data && data.length > 0 ?
                     data.map(dataItem => <div className='item' key={`${dataItem.id}.0`}>
                         <div className="title" key={`${dataItem.id}.1`} onClick={() => handleSingleSelection(dataItem.id)}>
-                            <h3 key={`${dataItem.id}.2`}>{dataItem.question}</h3>
-                            <span key={`${dataItem.id}.3`}>+</span>
+                            <h3 key={`${dataItem.id}.2`}>{dataItem.question} <span key={`${dataItem.id}.3`}>+</span></h3>
+                            
                             <div key={`${dataItem.id}.4`}>
                                 {
                                     selection === dataItem.id ?
