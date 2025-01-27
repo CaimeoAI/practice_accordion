@@ -10,7 +10,7 @@ export default function Accordion() {
     const [selection, setSelection] = useState(null);
 
     function handleSingleSelection(getCurrentId) {
-        setSelection(getCurrentId)
+        setSelection(getCurrentId === selection ? null : getCurrentId)
     }
 
     return (
@@ -24,10 +24,10 @@ export default function Accordion() {
                         <div className="title" key={`${dataItem.id}.1`} onClick={() => handleSingleSelection(dataItem.id)}>
                             <h3 key={`${dataItem.id}.2`}>{dataItem.question}</h3>
                             <span key={`${dataItem.id}.3`}>+</span>
-                            <div>
+                            <div key={`${dataItem.id}.4`}>
                                 {
                                     selection === dataItem.id ?
-                                    <div className="content">{dataItem.answer}</div>
+                                    <div className="content" key={`${dataItem.id}.5`}>{dataItem.answer}</div>
                                     : null
                                 }
                             </div>
