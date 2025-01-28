@@ -16,6 +16,7 @@ export default function Accordion() {
 
     return (
         <div className="wrapper">
+            <button>Multi-Selection</button>
             <div className="accordion">
                 {/*Checking if data is not empty and returns the right structure if not, otherwise returns div with error message*/}
                 {/*Wrote a key generation for unique IDs for all elements and child elements to avoid the unique key error*/}

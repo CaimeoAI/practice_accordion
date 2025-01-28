@@ -12,6 +12,16 @@
     align-items: center;
 }
 
+.wrapper button {
+    padding: 10px 20px;
+    border-radius: 2rem;
+    background-color: #614101;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .accordion {
     width: 500px;
 }
