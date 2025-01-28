@@ -2,10 +2,6 @@ import { useState } from "react";
 import data from "../constants/data.js";
 import "../css/accordion.css";
 
-//? Single Selection
-//? Multiple Selection
-
-
 export default function Accordion() {
 
     const [selection, setSelection] = useState(null);
