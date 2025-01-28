@@ -9,14 +9,20 @@ import "../css/accordion.css";
 export default function Accordion() {
 
     const [selection, setSelection] = useState(null);
+    const [enableMultiSelection, setEnableMultiSelection] = useState(false);
+    const [multiSelection, setMultiSelection] = useState([]);
 
     function handleSingleSelection(getCurrentId) {
         setSelection(getCurrentId === selection ? null : getCurrentId)
     }
 
+    function handleMultiSelection() {
+        setEnableMultiSelection(enableMultiSelection === false ? true : false)
+    }
+
     return (
         <div className="wrapper">
-            <button>Multi-Selection</button>
+            <button onClick={() => handleMultiSelection(!enableMultiSelection)} className={enableMultiSelection === true ? 'button-active' : 'button-inactive'}>Multi-Selection</button>
             <div className="accordion">
                 {/*Checking if data is not empty and returns the right structure if not, otherwise returns div with error message*/}
                 {/*Wrote a key generation for unique IDs for all elements and child elements to avoid the unique key error*/}

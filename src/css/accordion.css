@@ -12,7 +12,17 @@
     align-items: center;
 }
 
-.wrapper button {
+.button-active {
+    padding: 10px 20px;
+    border-radius: 2rem;
+    background-color: darkslategray;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.button-inactive {
     padding: 10px 20px;
     border-radius: 2rem;
     background-color: #614101;
