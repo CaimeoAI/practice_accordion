@@ -16,25 +16,38 @@ export default function Accordion() {
         setSelection(getCurrentId === selection ? null : getCurrentId)
     }
 
-    function handleMultiSelection() {
+    function handleEnableMultiSelection() {
         setEnableMultiSelection(enableMultiSelection === false ? true : false)
+    }
+
+    function handleMultiSelection(getCurrentId) {
+        let array = [...multiSelection]
+        if (enableMultiSelection === true) { 
+            array.includes(getCurrentId) ? array.splice(array.indexOf(getCurrentId), 1) : array.push(getCurrentId)
+            setMultiSelection(array)
+        } else {
+            setMultiSelection([])
+        }
+
+        console.log(multiSelection)
+        
     }
 
     return (
         <div className="wrapper">
-            <button onClick={() => handleMultiSelection(!enableMultiSelection)} className={enableMultiSelection === true ? 'button-active' : 'button-inactive'}>Multi-Selection</button>
+            <button onClick={() => handleEnableMultiSelection(!enableMultiSelection)} className={enableMultiSelection === true ? 'button-active' : 'button-inactive'}>Multi-Selection</button>
             <div className="accordion">
                 {/*Checking if data is not empty and returns the right structure if not, otherwise returns div with error message*/}
                 {/*Wrote a key generation for unique IDs for all elements and child elements to avoid the unique key error*/}
                 {
                     data && data.length > 0 ?
-                    data.map(dataItem => <div className='item' key={`${dataItem.id}.0`}>
+                    data.map(dataItem => <div className='item' key={`${dataItem.id}.0`} onClick={() => handleMultiSelection(dataItem.id)}>
                         <div className="title" key={`${dataItem.id}.1`} onClick={() => handleSingleSelection(dataItem.id)}>
                             <h3 key={`${dataItem.id}.2`}>{dataItem.question} <span key={`${dataItem.id}.3`}>+</span></h3>
                             
                             <div key={`${dataItem.id}.4`}>
                                 {
-                                    selection === dataItem.id ?
+                                    selection === dataItem.id || multiSelection.includes(dataItem.id) ?
                                     <div className="content" key={`${dataItem.id}.5`}>{dataItem.answer}</div>
                                     : null
                                 }
