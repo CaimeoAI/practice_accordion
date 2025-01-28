@@ -21,17 +21,22 @@ export default function Accordion() {
     }
 
     function handleMultiSelection(getCurrentId) {
-        let array = [...multiSelection]
-        if (enableMultiSelection === true) { 
-            array.includes(getCurrentId) ? array.splice(array.indexOf(getCurrentId), 1) : array.push(getCurrentId)
-            setMultiSelection(array)
+
+        if (enableMultiSelection === true) {
+            let array = [...multiSelection]
+            const findIndexId = array.indexOf(getCurrentId)
+
+            if (findIndexId === -1) array.push(getCurrentId)
+                else array.splice(findIndexId, 1)
+
+            setMultiSelection(array)   
         } else {
             setMultiSelection([])
         }
-
-        console.log(multiSelection)
         
     }
+
+    console.log(multiSelection)
 
     return (
         <div className="wrapper">
@@ -47,9 +52,10 @@ export default function Accordion() {
                             
                             <div key={`${dataItem.id}.4`}>
                                 {
-                                    selection === dataItem.id || multiSelection.includes(dataItem.id) ?
-                                    <div className="content" key={`${dataItem.id}.5`}>{dataItem.answer}</div>
-                                    : null
+                                    enableMultiSelection ?
+                                    multiSelection.indexOf(dataItem.id) !== -1 && (<div className="content" key={`${dataItem.id}.5`}>{dataItem.answer}</div>)
+                                    :
+                                    selection === dataItem.id && (<div className="content" key={`${dataItem.id}.5`}>{dataItem.answer}</div>)                                    
                                 }
                             </div>
                         </div>
